@@ -29,10 +29,19 @@ export class VeterinariosService {
         return record;
       }
 
+      async findOneByEmail(email: string): Promise<Veterinario | undefined> {
+        return this.veterinariosRepository.findOne({
+          where: {
+            email,
+          },
+        });
+      }
+
       create(new_veterinario: CreateVeterinarioDto) {
+        //Duda en esta parte
         if (new_veterinario.veterinario === undefined) {
         }
-    
+        
         const veterinario = this.veterinariosRepository.create(new_veterinario);
         return this.veterinariosRepository.save(veterinario); // return the veterinario created
     

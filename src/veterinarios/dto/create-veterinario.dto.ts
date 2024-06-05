@@ -1,4 +1,7 @@
 import { IsString, MinLength, MaxLength, IsEmail } from "class-validator";
+import { BeforeInsert } from "typeorm";
+//Se agrega manualmente
+import * as bcrypt from 'bcrypt';
 
 export default class CreateVeterinarioDto {
     @IsString()
@@ -15,4 +18,5 @@ export default class CreateVeterinarioDto {
     @MinLength(10)
     @MaxLength(40)
     password: string;
+
 }

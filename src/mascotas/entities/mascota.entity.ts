@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import Veterinario from "src/veterinarios/entities/veterinario.entity";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToOne } from "typeorm";
 
 @Entity('mascotas')
 class Mascota {
@@ -15,5 +16,8 @@ class Mascota {
     @Column({ type: 'varchar' })
     @ApiProperty()
     telefono: string;
+
+    @ManyToOne(() => Veterinario, (veterinario) => veterinario.mascota)
+    veterinario: Veterinario;
 }
 export default Mascota;

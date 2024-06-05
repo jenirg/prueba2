@@ -10,6 +10,7 @@ import { MascotasModule } from './mascotas/mascotas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Joi from '@hapi/joi';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       DB_NAME: Joi.string().required(),
       DB_USER: Joi.string().required(),
       DB_PASS: Joi.string().required(),
+      JWT_SECRET: Joi.string().required(),
     }),
   }),
 
@@ -36,7 +38,7 @@ import { ConfigModule } from '@nestjs/config';
     synchronize: false, 
   }),
     VeterinariosModule, 
-    MascotasModule
+    MascotasModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
